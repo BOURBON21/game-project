@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // 점프
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !anim.GetBool("isJumping"))
         {
             rigid.AddForce(Vector3.up * jumpPower, ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
