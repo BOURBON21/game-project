@@ -33,6 +33,21 @@ public class PlayerController : MonoBehaviour
         // 이동 처리
         float x = Input.GetAxisRaw("Horizontal");
 
+        // 현재 위치 가져오기
+        float currentX = transform.position.x;
+
+        // 왼쪽으로 이동하려고 할 때, x축이 -10 이하라면 이동 금지
+        if (currentX <= -14.2f && x < 0)
+        {
+            x = 0; // 왼쪽 이동 입력 무시
+        }
+
+        // 오른쪽으로 이동하려고 할 때, x축이 10 이상이라면 이동 금지
+        if (currentX >= 14.2f && x > 0)
+        {
+            x = 0; // 오른쪽 이동 입력 무시
+        }
+
         // Rigidbody의 velocity로 이동 처리
         Vector3 velocity = rigid.velocity;
         velocity.x = x * moveSpeed; // x축 속도 변경
